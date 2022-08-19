@@ -7,6 +7,7 @@ Import-Module -Name Terminal-Icons
 Import-Module -Name PSReadLine
 Import-Module -Name z
 Import-Module git-aliases -DisableNameChecking
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git
 
 Set-PSReadLineOption -PredictionSource History
 Set-PSReadLineOption -PredictionViewStyle ListView
