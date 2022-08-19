@@ -33,8 +33,9 @@ function art($arg1, $arg2, $arg3, $arg4, $arg5) { php artisan $arg1 $arg2 $arg3 
 function makeMigration($arg) { php artisan make:migration create_"$arg"_table --create="$arg" }
 function optimize() { php artisan optimize:clear }
 function routeList() { php artisan route:list }
-function installPassport($arg) { php artisan passport:install --$arg }
-function migrateFresh($arg) { php artisan migrate:fresh --$arg }
+function installPassport($force) { php artisan passport:install --$force }
+function migrateFresh($seed) { php artisan migrate:fresh --$seed }
+function LaravelServe($port) { php artisan serve --port=$port }
 
 Set-Alias pa art
 Set-Alias pacm makeMigration
@@ -42,6 +43,7 @@ Set-Alias paoc optimize
 Set-Alias parl routeList
 Set-Alias papass installPassport
 Set-Alias pamf migrateFresh
+Set-Alias paser LaravelServe
 
 #### Use as by default Alias  #####
 
