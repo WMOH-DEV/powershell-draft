@@ -3,9 +3,10 @@
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/atomic.omp.json" | Invoke-Expression
 
 
-Import-Module -Name "Terminal-Icons"
+Import-Module -Name Terminal-Icons
 Import-Module -Name PSReadLine
-Import-Module -Name git-aliases
+Import-Module -Name z
+Import-Module git-aliases -DisableNameChecking
 
 Set-PSReadLineOption -PredictionSource History
 Set-PSReadLineOption -PredictionViewStyle ListView
@@ -16,9 +17,17 @@ Set-PSReadLineOption -EditMode Windows
 function art($arg1, $arg2, $arg3, $arg4, $arg5) { php artisan $arg1 $arg2 $arg3 $arg4 $arg5 }
 
 function makeMigration($arg) { php artisan make:migration create_"$arg"_table --create="$arg" }
+function optimize() { php artisan optimize:clear }
+function routeList() { php artisan route:list }
+function installPassport($arg) { php artisan passport:install --$arg }
+function migrateFresh($arg) { php artisan migrate:fresh --$arg }
 
-Set-Alias a art
-Set-Alias amig makeMigration
+Set-Alias pa art
+Set-Alias pacm makeMigration
+Set-Alias paoc optimize
+Set-Alias parl routeList
+Set-Alias papass installPassport
+Set-Alias pamf migrateFresh
 
 #### Use as by default Alias  #####
 
@@ -38,22 +47,15 @@ Set-Alias pass:i passport:install
 
 
 # Try it
-## PS c:\laravel_proj> a ge:r post
+# PS c:\laravel_proj> a ge:r post
 
-# For CodeCept
-## Assuming codecept.phar file is in your current working Directory
-
-function codecept($arg1, $arg2) { php codecept.phar $arg1 $arg2 }
-Set-Alias c codecept
-
-# *** Other *** #
 
 function www($arg1) {
   $arg = "C:\laragon\www\" + $arg1
   Set-Location $arg
 }
  
-## Try it:
+# Try it:
 
 # PS C:\> www
 
