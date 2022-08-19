@@ -1,6 +1,9 @@
-# C:\Users\warav\OneDrive\Documents\PowerShell
-# oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/jandedobbeleer.omp.json" | Invoke-Expression
-oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/atomic.omp.json" | Invoke-Expression
+# & ([ScriptBlock]::Create((oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\jandedobbeleer.omp.json" --print) -join "`n"))
+# & ([ScriptBlock]::Create((oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\iterm2.omp.json" --print) -join "`n"))
+# & ([ScriptBlock]::Create((oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\plague.omp.json" --print) -join "`n"))
+# & ([ScriptBlock]::Create((oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\remk.omp.json" --print) -join "`n"))
+& ([ScriptBlock]::Create((oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\sonicboom_light.omp.json" --print) -join "`n"))
+#oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/atomic.omp.json" | Invoke-Expression
 
 
 Import-Module -Name Terminal-Icons
@@ -13,6 +16,16 @@ Set-PSReadLineOption -PredictionSource History
 Set-PSReadLineOption -PredictionViewStyle ListView
 Set-PSReadLineOption -EditMode Windows
 
+# Set Alias to edit the profile file
+function editProfile() { code $PROFILE }
+Set-Alias prof editProfile
+
+#Open Projects by VScode or PHPstorm
+function openProjectviePHPStorm($project) { phpstorm64 $project }
+Set-Alias startstorm openProjectviePHPStorm
+
+function openProjectViaVSCode($project) { code $project }
+Set-Alias startvs openProjectViaVSCode
 # Laravel Artisan Commands Shortcut 
 
 function art($arg1, $arg2, $arg3, $arg4, $arg5) { php artisan $arg1 $arg2 $arg3 $arg4 $arg5 }
@@ -63,3 +76,9 @@ function www($arg1) {
 # OR,
 
 # PS C:\> www laravel_proj
+
+# omnevo projects
+function omnevo($arg1) {
+  $arg = "D:\Projects\" + $arg1
+  Set-Location $arg
+}
